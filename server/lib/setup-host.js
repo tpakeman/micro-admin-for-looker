@@ -108,7 +108,11 @@ module.exports = async function setupHost(config, host){
 	let corsApiResponse
 	try{corsApiResponse = await api(`user`,{headers:{origin},fullResponse:true})}
 	catch(e){}
-	const corsIsAllowed = corsApiResponse && corsApiResponse.headers['access-control-allow-origin'] == origin
+	let corsIsAllowed = false
+	if (corsApiResponse) {
+		let headers = corsApiResponse.socket._httpMessage.res.rawHeaders
+		corsIsAllowed = headers[headers.findIndex(e => e == 'Access-Control-Allow-Origin') + 1] == origin
+	}
 	if(corsIsAllowed){
 		logger(`✅ CORS configuration OK`)
 		}
