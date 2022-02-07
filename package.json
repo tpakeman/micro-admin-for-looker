@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "client": "cd client && yarn develop",
+        "server": "cd server && yarn start",
+        "start": "yarn client & yarn server"
+    }
+}

@@ -1,0 +1,68 @@
+{
+  "name": "micro_admin_react_frontend",
+  "version": "0.0.1",
+  "description": "React FrontEnd for MicroAdmin",
+  "main": "dist/bundle.js",
+  "author": "Tom Pakeman",
+  "license": "Apache-2.0",
+  "scripts": {
+    "analyze": "export ANALYZE_MODE=static && yarn build",
+    "build": "export BABEL_ENV=build && webpack --config webpack.prod.js",
+    "clean": "rm -rf dist",
+    "develop": "webpack serve --hot --port 8080 --allowed-hosts all --config webpack.develop.js",
+    "prebuild": "yarn clean"
+  },
+  "dependencies": {
+    "@looker/components": "^2.8.14",
+    "@looker/icons": "^1.5.13",
+    "@styled-icons/material": "^10.34.0",
+    "@styled-icons/material-outlined": "^10.34.0",
+    "@styled-icons/material-rounded": "^10.34.0",
+    "core-js": "^3.21.0",
+    "html-webpack-plugin": "^5.5.0",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
+    "@babel/plugin-transform-react-jsx": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@babel/runtime": "^7.17.0",
+    "babel-loader": "^8.2.3",
+    "babel-loader-exclude-node-modules-except": "^1.2.1",
+    "babel-preset-nano-react-app": "^0.1.0",
+    "css-loader": "^6.6.0",
+    "react-hot-loader": "^4.13.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.68.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "babel": {
+    "presets": [
+      "nano-react-app"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties"
+      ],
+      [
+        "@babel/plugin-transform-react-jsx",
+        {
+          "pragmaFrag": "React.Fragment"
+        }
+      ]
+    ]
+  }
+}

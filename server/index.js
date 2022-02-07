@@ -62,21 +62,29 @@ async function initServer(){
 	const app = express()
 	
 	app.use('/api',expressRequestLogger({console}))
-	if(config.corsOrigin){
-		app.use('/api',cors({origin:config.corsOrigin,maxAge:7200}))
-		}
-	app.use('/api',bodyParser.json())
-	app.get ('/api/hosts',routeHandlers.hosts({hosts,primaryHostId}))
-	app.get ('/api/flows',routeHandlers.flows({flows}))
-	app.post('/api/flow/:flow/execute', routeHandlers.flowExecute({hosts,flows,primaryHostId}))
-	
-	if(config.serveUi!==false){ //Default to true if undefined for config backwards compatibility
-		app.use(express.static('../ui/static',{index:"index.xhtml",maxAge:15000}))
-		}
+	if (config.corsOrigin) {
+		app.use('/api', cors({
+			origin: config.corsOrigin,
+			maxAge: 7200
+		}))
+	}
+	app.use('/api',bodyParser.json())	
 
-	app.use(function (err, req, res, next) {
-		res.status(err.status||500).json(err.message||err)
-		})
+	app.get ('/api/hosts', (req, res) => {
+		res.send({foo: 'bar'})
+	})
+	
+	app.get ('/api/flows', (req, res) => {
+		res.send({foo: 'bar'})
+	})
+
+	app.post('/api/flow/:flow/execute', (req, res) => {
+		res.send({foo: 'bar'})
+	})
+
+	app.use((err, req, res, next) => {
+		res.status(err.status || 500).json(err.message || err)
+	})
 
 	app.listen(config.port)
 	}
